@@ -1,4 +1,5 @@
 import { LitElement, html, css, styleMap, ref, createRef } from 'https://cdn.jsdelivr.net/gh/lit/dist@2.6.1/all/lit-all.min.js';
+import './lit-dialog.js'
 
 class LitCard extends LitElement {
   /* 样式效果来源：[https://codepen.io/andymerskin/pen/XNMWvQ] */
@@ -103,7 +104,10 @@ class LitCard extends LitElement {
     mouseX: {},
     mouseY: {},
     mouseLeaveDelay: {},
-    dataImage: {}
+    dataImage: {},
+    isOpenSubDialog: {
+      state: true,
+    },
   }
 
   constructor() {
@@ -114,6 +118,7 @@ class LitCard extends LitElement {
     this.mouseY = 0
     this.mouseLeaveDelay = null
     this.dataImage = ''
+    this.isOpenSubDialog = false
   }
 
   render() {
@@ -138,7 +143,8 @@ class LitCard extends LitElement {
         ${ref(this.cardRef)}
         @mousemove=${this._handleMouseMove}
         @mouseenter=${this._handleMouseEnter}
-        @mouseleave=${this._handleMouseLeave}>
+        @mouseleave=${this._handleMouseLeave}
+        @click=${this._handleClick}>
         <div class="card" style=${styleMap(cardStyle)}>
           <div class="card-bg" style=${styleMap(cardBg)}></div>
           <div class="card-info">
@@ -164,6 +170,13 @@ class LitCard extends LitElement {
       this.mouseX = 0
       this.mouseY = 0
     }, 1000)
+  }
+
+  _handleClick() {
+    this.dispatchEvent(new CustomEvent('toOpen', {
+      bubbles: false,
+      composed: false,
+    }))
   }
 
   firstUpdated() {

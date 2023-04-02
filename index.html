@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>ForMDS</title>
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/index.css">
+  <style>
+    .preview-c {
+      width: 390px;
+      height: 700px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .preview-c .bg {
+      width: 100%;
+      height: 100%;
+      background: url('https://s2.loli.net/2023/04/02/27kiUnIwc4eoaVA.png');
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 100% 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+    .preview-c .content {
+      width: 345px;
+      height: 661px;
+      background-color: #fff;
+      margin-right: 7px;
+      border-radius: 30px;
+      overflow: auto;
+      display: flex;
+      flex-flow: column nowrap;
+      scroll-snap-type: y mandatory;
+      scrollbar-width: none; /* firefox */
+      -ms-overflow-style: none; /* IE 10+ */
+    }
+    .preview-c .content::-webkit-scrollbar {
+      display: none;
+    }
+    .preview-c .content img {
+      scroll-snap-align: start;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
 </head>
+
 <body>
   <script type="module" src="./js/lit-card.js"></script>
   <main>
@@ -13,13 +58,39 @@
     <article>
       <h2 class="sub-title">APP项目</h2>
       <div class="container">
-        <lit-card dataimage="https://s2.loli.net/2023/03/30/xTh52PlLNQrgAzu.jpg">
-          <h1 slot="header">Canyons</h1>
-          <p slot="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <lit-card dataimage="https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg">
+          <h1 slot="header">加油河南</h1>
+          <p slot="content">为河南石化搭建的一款集商城、商城、导航等多种功能汇集的APP。</p>
         </lit-card>
       </div>
     </article>
-    <!-- <img src="https://s2.loli.net/2023/03/30/xTh52PlLNQrgAzu.jpg" alt=""> -->
   </main>
+  <lit-dialog>
+    <div class="preview-c">
+      <div class="bg"></div>
+      <div class="content">
+        <img src="https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg" alt="">
+        <img src="https://s2.loli.net/2023/04/02/JhBMRnpIToewDaU.jpg" alt="">
+        <img src="https://s2.loli.net/2023/04/02/V82mCWMbeJodkta.jpg" alt="">
+        <img src="https://s2.loli.net/2023/04/02/I8mptXkjU7uwTo6.jpg" alt="">
+      </div>
+    </div>
+  </lit-dialog>
+  <script>
+    (function () {
+      const mainDom = document.querySelector('main')
+      const litDialog = document.querySelector('lit-dialog')
+      const litCard = document.querySelector('lit-card')
+      litCard.addEventListener('toOpen', e => {
+        mainDom.classList.add('blur-it')
+        litDialog.open = true
+      })
+      litDialog.addEventListener('close', e => {
+        mainDom.classList.remove('blur-it')
+        litDialog.open = false
+      })
+    })()
+  </script>
 </body>
+
 </html>

@@ -82,8 +82,10 @@
       const litDialog = document.querySelector('lit-dialog')
       const litCard = document.querySelector('lit-card')
       litCard.addEventListener('toOpen', e => {
+        console.log('执行了')
         mainDom.classList.add('blur-it')
         litDialog.open = true
+        console.log(litDialog.open)
       })
       litDialog.addEventListener('close', e => {
         mainDom.classList.remove('blur-it')

@@ -15,6 +15,7 @@
       align-items: center;
       position: relative;
     }
+
     .preview-c .bg {
       width: 100%;
       height: 100%;
@@ -27,7 +28,8 @@
       top: 0;
       pointer-events: none;
     }
-    .preview-c .content {
+
+    .preview-c .prev-content {
       width: 345px;
       height: 661px;
       background-color: #fff;
@@ -37,13 +39,9 @@
       display: flex;
       flex-flow: column nowrap;
       scroll-snap-type: y mandatory;
-      scrollbar-width: none; /* firefox */
-      -ms-overflow-style: none; /* IE 10+ */
     }
-    .preview-c .content::-webkit-scrollbar {
-      display: none;
-    }
-    .preview-c .content img {
+
+    .preview-c .prev-content img {
       scroll-snap-align: start;
       width: 100%;
       height: 100%;
@@ -53,45 +51,76 @@
 
 <body>
   <script type="module" src="./js/lit-card.js"></script>
+  <script type="module" src="./js/lit-article.js"></script>
   <main>
     <h1 class="title">往期项目展示</h1>
-    <article>
-      <h2 class="sub-title">APP项目</h2>
-      <div class="container">
-        <lit-card dataimage="https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg">
-          <h1 slot="header">加油河南</h1>
-          <p slot="content">为河南石化搭建的一款集商城、商城、导航等多种功能汇集的APP。</p>
-        </lit-card>
-      </div>
-    </article>
+    <lit-article></lit-article>
   </main>
   <lit-dialog>
     <div class="preview-c">
       <div class="bg"></div>
-      <div class="content">
-        <img src="https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg" alt="">
-        <img src="https://s2.loli.net/2023/04/02/JhBMRnpIToewDaU.jpg" alt="">
-        <img src="https://s2.loli.net/2023/04/02/V82mCWMbeJodkta.jpg" alt="">
-        <img src="https://s2.loli.net/2023/04/02/I8mptXkjU7uwTo6.jpg" alt="">
-      </div>
+      <div class="prev-content"></div>
     </div>
   </lit-dialog>
-  <script>
-    (function () {
-      const mainDom = document.querySelector('main')
-      const litDialog = document.querySelector('lit-dialog')
-      const litCard = document.querySelector('lit-card')
-      litCard.addEventListener('toOpen', e => {
-        console.log('执行了')
+
+  <script type="module">
+    import LitLoading from './js/lit-loading.js'
+
+    function openLoading() {
+      if (document.querySelector('lit-loading')) {
+        document.querySelector('lit-loading').isOpen = true
+      } else {
+        let basicLoading = new LitLoading()
+        basicLoading.open()
+      }
+    }
+
+    function closeLoading() {
+      setTimeout(() => {
+        if (document.querySelector('lit-loading')) {
+          document.querySelector('lit-loading').isOpen = false
+        }
+      }, 200)
+    }
+
+    function loadImg(url) {
+      return new Promise((resolve, reject) => {
+        const img = new Image()
+        img.src = url
+        img.onload = function () {
+          resolve(img)
+        }
+        img.onerror = function () {
+          reject(new Error('Could not load image at' + url))
+        }
+      })
+    }
+
+    const mainDom = document.querySelector('main')
+    const litDialog = document.querySelector('lit-dialog')
+    const litArticle = document.querySelector('lit-article')
+    const prevContent = document.querySelector('.prev-content')
+    litArticle.addEventListener('toOpen', e => {
+      openLoading()
+      let asyLoadFus = e.detail.delImgs.map(item => {
+        return loadImg(item)
+      })
+      Promise.all(asyLoadFus).then(res => {
+        res.forEach(el => {
+          prevContent.appendChild(el)
+        })
         mainDom.classList.add('blur-it')
         litDialog.open = true
-        console.log(litDialog.open)
+        closeLoading()
+      }).catch(err => {
+        console.log(err)
+        closeLoading()
       })
-      litDialog.addEventListener('close', e => {
-        mainDom.classList.remove('blur-it')
-        litDialog.open = false
-      })
-    })()
+    })
+    litDialog.addEventListener('close', e => {
+      mainDom.classList.remove('blur-it')
+      litDialog.open = false
+    })
   </script>
 </body>
 

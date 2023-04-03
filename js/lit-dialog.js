@@ -1,5 +1,5 @@
 // 基础弹窗
-import { LitElement, html, css } from 'https://cdn.jsdelivr.net/gh/lit/dist@2.6.1/all/lit-all.min.js'
+import { LitElement, html, css } from '../libs/lit-all.min.js'
 
 export default class LitDialog extends LitElement {
   static styles = css`

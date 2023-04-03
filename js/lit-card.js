@@ -1,4 +1,4 @@
-import { LitElement, html, css, styleMap, ref, createRef } from 'https://cdn.jsdelivr.net/gh/lit/dist@2.6.1/all/lit-all.min.js';
+import { LitElement, html, css, styleMap, ref, createRef } from '../libs/lit-all.min.js'
 import './lit-dialog.js'
 
 class LitCard extends LitElement {
@@ -42,6 +42,7 @@ class LitCard extends LitElement {
       flex: 0 0 240px;
       width: 240px;
       height: 320px;
+      margin: 0 auto;
       background-color: #333;
       overflow: hidden;
       border-radius: 10px;
@@ -105,9 +106,7 @@ class LitCard extends LitElement {
     mouseY: {},
     mouseLeaveDelay: {},
     dataImage: {},
-    isOpenSubDialog: {
-      state: true,
-    },
+    delImgs: {},
   }
 
   constructor() {
@@ -118,7 +117,7 @@ class LitCard extends LitElement {
     this.mouseY = 0
     this.mouseLeaveDelay = null
     this.dataImage = ''
-    this.isOpenSubDialog = false
+    this.delImgs = []
   }
 
   render() {
@@ -174,6 +173,9 @@ class LitCard extends LitElement {
 
   _handleClick() {
     this.dispatchEvent(new CustomEvent('toOpen', {
+      detail: {
+        delImgs: this.delImgs
+      },
       bubbles: false,
       composed: false,
     }))

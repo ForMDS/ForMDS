@@ -32,7 +32,7 @@ class LitCard extends LitElement {
     }
     .card-wrap:hover .card {
       transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 2s cubic-bezier(0.23, 1, 0.32, 1);
-      box-shadow: rgba(255, 255, 255, 0.2) 0 0 40px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset white 0 0 0 6px;
+      box-shadow: rgba(255, 255, 255, 0.2) 0 0 10px 5px, white 0 0 0 1px, rgba(0, 0, 0, 0.66) 0 5px 12px 0, inset #333 0 0 0 5px, inset white 0 0 0 6px;
     }
 
     .card {
@@ -44,7 +44,7 @@ class LitCard extends LitElement {
       background-color: #333;
       overflow: hidden;
       border-radius: 10px;
-      box-shadow: rgba(0, 0, 0, 0.66) 0 30px 60px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
+      box-shadow: rgba(0, 0, 0, 0.66) 0 5px 12px 0, inset #333 0 0 0 5px, inset rgba(255, 255, 255, 0.5) 0 0 0 6px;
       transition: 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
     }
     .card-bg {

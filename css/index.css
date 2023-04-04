@@ -6,7 +6,9 @@ main {
   width: 1080px;
   margin: 0 auto;
   height: 100%;
-  overflow-y: auto;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .title {
@@ -14,7 +16,13 @@ main {
   font-weight: 700;
   color: #5D4037;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 40px;
+}
+
+lit-article {
+  flex: 1;
+  overflow-y: auto;
+  margin: 10px 0 20px 0;
 }
 
 .blur-it {

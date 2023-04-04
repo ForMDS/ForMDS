@@ -107,6 +107,7 @@ class LitCard extends LitElement {
     mouseLeaveDelay: {},
     dataImage: {},
     delImgs: {},
+    scrollTopNum: {},
   }
 
   constructor() {
@@ -118,6 +119,7 @@ class LitCard extends LitElement {
     this.mouseLeaveDelay = null
     this.dataImage = ''
     this.delImgs = []
+    this.scrollTopNum = 0
   }
 
   render() {
@@ -157,7 +159,7 @@ class LitCard extends LitElement {
 
   _handleMouseMove(e) {
     this.mouseX = e.pageX - this.offsetLeft - this.width / 2
-    this.mouseY = e.pageY - this.offsetTop - this.height / 2
+    this.mouseY = e.pageY - (this.offsetTop - this.scrollTopNum) - this.height / 2
   }
 
   _handleMouseEnter() {

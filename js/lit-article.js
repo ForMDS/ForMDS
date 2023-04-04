@@ -70,10 +70,13 @@ class LitArticle extends LitElement {
 
   `
 
-  static properties = {}
+  static properties = {
+    scrollTopNum: {},
+  }
 
   constructor() {
     super()
+    this.scrollTopNum = 0
   }
 
   render() {
@@ -86,6 +89,7 @@ class LitArticle extends LitElement {
             <lit-card
               dataimage=${item.coverImg}
               .delImgs=${item.delImgs}
+              scrollTopNum=${this.scrollTopNum}
               @toOpen=${this._toOpen}>
               <h1 slot="header">${item.name}</h1>
               <p slot="content">${item.desc}</p>

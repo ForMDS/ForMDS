@@ -100,15 +100,18 @@
     const litDialog = document.querySelector('lit-dialog')
     const litArticle = document.querySelector('lit-article')
     const prevContent = document.querySelector('.prev-content')
+    
     litArticle.addEventListener('toOpen', e => {
       openLoading()
       let asyLoadFus = e.detail.delImgs.map(item => {
         return loadImg(item)
       })
       Promise.all(asyLoadFus).then(res => {
+        prevContent.innerHTML = ''
         res.forEach(el => {
           prevContent.appendChild(el)
         })
+        prevContent.scrollTop = 0
         mainDom.classList.add('blur-it')
         litDialog.open = true
         closeLoading()
@@ -117,6 +120,11 @@
         closeLoading()
       })
     })
+
+    litArticle.addEventListener('scroll', e => {
+      e.target.scrollTopNum = e.target.scrollTop
+    })
+
     litDialog.addEventListener('close', e => {
       mainDom.classList.remove('blur-it')
       litDialog.open = false

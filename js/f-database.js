@@ -35,24 +35,29 @@ export default {
       ]
     },
     {
-      name: '*游戏中心',
+      name: '游戏中心',
       desc: '配合H5使用的游戏中心项目，支持大转盘、刮刮乐、红包雨、划龙舟等多种游戏',
-      coverImg: 'https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg',
+      coverImg: 'https://s2.loli.net/2023/04/05/UW5fKmXjMhgp6is.jpg',
       delImgs: [
-        'https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg',
-        'https://s2.loli.net/2023/04/02/JhBMRnpIToewDaU.jpg',
-        'https://s2.loli.net/2023/04/02/V82mCWMbeJodkta.jpg',
-        'https://s2.loli.net/2023/04/02/I8mptXkjU7uwTo6.jpg',
+        'https://s2.loli.net/2023/04/05/UW5fKmXjMhgp6is.jpg',
+        'https://s2.loli.net/2023/04/05/EwGyMlr17hRuCxg.jpg',
+        'https://s2.loli.net/2023/04/05/ptSgXWIQAkaRvdl.png',
+        'https://s2.loli.net/2023/04/05/6wZ8jX4JrlFqNyS.png',
+        'https://s2.loli.net/2023/04/05/QvsK6hIX3gY7OmS.png',
       ]
     },
   ],
   '小程序&公众号': [
     {
-      name: '*加油贵州',
-      desc: '为河南石化搭建的一款集商城、商城、导航等多种功能汇集的APP。',
-      coverImg: 'https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg',
+      name: '会员服务',
+      desc: '加油会员服务小程序集成了洗车、加油服务、汽服商户端等多种功能。',
+      coverImg: 'https://s2.loli.net/2023/04/05/1CefRjODPVsWnXH.jpg',
       delImgs: [
-        'https://s2.loli.net/2023/04/02/SB1yknotZu8q9iN.jpg',
+        'https://s2.loli.net/2023/04/05/1CefRjODPVsWnXH.jpg',
+        'https://s2.loli.net/2023/04/05/I9AcljqYFtpJnSd.jpg',
+        'https://s2.loli.net/2023/04/05/mI85VjhSNMQFeBT.jpg',
+        'https://s2.loli.net/2023/04/05/TKLmCpbNsXMuSPg.jpg',
+        'https://s2.loli.net/2023/04/05/7EBqXkVf4gcKjDH.jpg',
       ]
     },
     {
